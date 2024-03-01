@@ -9,5 +9,8 @@ public class Acciones {
 	private double precio;
 	private Deque<Double> historialPrecios = new ArrayDeque<>();
 	
+	public Acciones(String nombre) {
+		this.nombre = nombre;
+	}
 
 }
