@@ -6,6 +6,8 @@ public class Main {
 
 	private static Scanner in = new Scanner(System.in);
 
+	private static Usuario usuario;
+
 	public static void main(String[] args) {
 
 		Utilidades.anadirEspacio();
@@ -70,7 +72,7 @@ public class Main {
 			System.out.println("");
 			System.out.print("     Introduzca su apellido: ");
 			apellido = in.nextLine();
-			
+
 			System.out.println("");
 			System.out.print("     Introduzca su edad: ");
 			edad = in.nextInt();
@@ -131,7 +133,7 @@ public class Main {
 					}
 
 				} while ((!modificar.equalsIgnoreCase("s")) && (!modificar.equalsIgnoreCase("n")));
-				
+
 				if (modificar.equalsIgnoreCase("s")) {
 					System.out.println("");
 					System.out.println("        Vuelva a intoducir los datos deseados.");
@@ -151,22 +153,58 @@ public class Main {
 					System.out.println("");
 					System.out.println("     Pulse Enter para continuar...");
 					in.nextLine();
+					usuario = new Usuario(nombre, apellido, edad, correo, contrasena);
 					iniciarSesion();
 				}
 
 			}
 
 		} while (error == true);
-		
-		Usuario usuario = new Usuario(nombre, apellido, edad, correo, contrasena);
 
 	}
-	
+
 	public static void iniciarSesion() {
+
+		String correo;
+		String contrasena;
+
+		do {
+
+			Utilidades.anadirEspacio();
+
+			System.out.println("     =====================================");
+			System.out.println("       Bienvenido al Simulador de Bolsa.");
+			System.out.println("     =====================================");
+			System.out.println("");
+			System.out.println("       Inicie sesión con sus credenciales por favor.");
+			System.out.println("");
+			System.out.print("       Correo Electrónico: ");
+			correo = in.nextLine();
+			System.out.println("");
+			System.out.print("       Contraseña: ");
+			contrasena = in.nextLine();
+
+			if ((!correo.equals(usuario.getCorreo())) || (!contrasena.equals(usuario.getContrasena()))) {
+				System.out.println("");
+				System.out.println("     Correo Electrónico o Contraseña incorrectos, vuelva a introducir sus datos.");
+				System.out.println("");
+				System.out.println("     Pulse Enter para continuar...");
+				in.nextLine();
+			}
+
+		} while ((!correo.equals(usuario.getCorreo())) || (!contrasena.equals(usuario.getContrasena())));
 		
 		Utilidades.anadirEspacio();
 		
-		System.out.println("inicio sesion");
+		System.out.println("     Inicio de sesión exitoso.");
+		System.out.println("");
+		System.out.println("     Pulse Enter para ir al menú...");
+		in.nextLine();
+		menuPrincipal();
+
+	}
+	
+	public static void menuPrincipal() {
 		
 	}
 

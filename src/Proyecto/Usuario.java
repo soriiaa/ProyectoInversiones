@@ -19,5 +19,13 @@ public class Usuario {
 		this.correoElectronico = correoElectronico;
 		this.contrasena = contrasena;
 	}
+		
+	public String getCorreo() {
+		return correoElectronico;
+	}
+	
+	public String getContrasena() {
+		return contrasena;
+	}
 
 }
