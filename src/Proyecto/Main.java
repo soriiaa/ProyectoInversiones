@@ -3,17 +3,17 @@ package Proyecto;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	private static Scanner in = new Scanner(System.in);
-	
+
 	public static void main(String[] args) {
-		
+
 		Utilidades.anadirEspacio();
-		
+
 		System.out.println("       ====================================");
 		System.out.println("         Bienvenido al Simulador Bursátil");
 		System.out.println("       ====================================");
-		
+
 		System.out.println("");
 		System.out.println("");
 		System.out.println("   Aquí podrá practicar sus mejores estrategias de");
@@ -34,9 +34,139 @@ public class Main {
 		System.out.println("   ______________________________________________________");
 		System.out.println("");
 		System.out.println("   Pulsa Enter para continuar...");
-		
+
 		in.nextLine();
+
+		interfazBienvenida();
+
+	}
+
+	public static void interfazBienvenida() {
+
+		String nombre;
+		String apellido;
+		int edad = 0;
+		String correo;
+		String contrasena;
+		String confirmarContrasena;
+		boolean error;
+		String modificar;
+
+		do {
+
+			error = false;
+
+			Utilidades.anadirEspacio();
+
+			System.out.println("          ______________");
+			System.out.println("");
+			System.out.println("            Comenzemos");
+			System.out.println("          ______________");
+			System.out.println("");
+			System.out.println("");
+			System.out.print("     Introduzca su nombre: ");
+			nombre = in.nextLine();
+
+			System.out.println("");
+			System.out.print("     Introduzca su apellido: ");
+			apellido = in.nextLine();
+			
+			System.out.println("");
+			System.out.print("     Introduzca su edad: ");
+			edad = in.nextInt();
+			in.nextLine();
+
+			System.out.println("");
+			System.out.print("     Introduzca su correo electrónico, con él iniciará sesión: ");
+			correo = in.nextLine();
+
+			System.out.println("");
+			System.out.print("     Introduzca su contraseña, no la olvide: ");
+			contrasena = in.nextLine();
+
+			System.out.println("");
+			System.out.print("        Confirme su contraseña: ");
+			confirmarContrasena = in.nextLine();
+
+			Utilidades.anadirEspacio();
+
+			if (edad < 18) {
+				error = true;
+				System.out.println("     " + nombre + ", sintiendolo mucho, solo pueden usar nuestros servicios");
+				System.out.println("     los mayores de edad. Gracias por confiar en nosotros.");
+				System.out.println("");
+				System.out.println("     Pulse Enter para continuar...");
+				in.nextLine();
+			} else if (!contrasena.equals(confirmarContrasena)) {
+				error = true;
+				System.out.println("     Las contraseñas no coinciden, vuelva a introducir sus datos.");
+				System.out.println("");
+				System.out.println("     Pulse Enter para continuar...");
+				in.nextLine();
+			}
+
+			if (error == false) {
+
+				System.out.println("     ¿Desea modificar alguno de los datos?");
+				System.out.println("");
+				System.out.println("        Nombre: " + nombre);
+				System.out.println("");
+				System.out.println("        Apellido: " + apellido);
+				System.out.println("");
+				System.out.println("        Edad: " + edad);
+				System.out.println("");
+				System.out.println("        Correo: " + correo);
+				System.out.println("");
+				System.out.println("        Contrasena: " + contrasena);
+
+				do {
+
+					System.out.println("");
+					System.out.print("     Modificar S/N: ");
+					modificar = in.nextLine();
+
+					if ((!modificar.equalsIgnoreCase("s")) && (!modificar.equalsIgnoreCase("n"))) {
+						System.out.println("");
+						System.out.println("     Opción inválida (S/N)");
+					}
+
+				} while ((!modificar.equalsIgnoreCase("s")) && (!modificar.equalsIgnoreCase("n")));
+				
+				if (modificar.equalsIgnoreCase("s")) {
+					System.out.println("");
+					System.out.println("        Vuelva a intoducir los datos deseados.");
+					System.out.println("");
+					System.out.println("     Pulse Enter para continuar...");
+					in.nextLine();
+					interfazBienvenida();
+				} else if (modificar.equalsIgnoreCase("n")) {
+					Utilidades.anadirEspacio();
+					System.out.println("");
+					System.out.println("     Acaba de crear su usuario en nuestro simulador.");
+					System.out.println("");
+					System.out.println("     Muchas gracias y bienvenido.");
+					System.out.println("");
+					System.out.println("     A partir de ahora use su correo electronico y su");
+					System.out.println("     contraseña para iniciar sesión.");
+					System.out.println("");
+					System.out.println("     Pulse Enter para continuar...");
+					in.nextLine();
+					iniciarSesion();
+				}
+
+			}
+
+		} while (error == true);
 		
+		Usuario usuario = new Usuario(nombre, apellido, edad, correo, contrasena);
+
+	}
+	
+	public static void iniciarSesion() {
+		
+		Utilidades.anadirEspacio();
+		
+		System.out.println("inicio sesion");
 		
 	}
 
