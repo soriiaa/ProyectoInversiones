@@ -12,5 +12,9 @@ public class Acciones {
 	public Acciones(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 
 }

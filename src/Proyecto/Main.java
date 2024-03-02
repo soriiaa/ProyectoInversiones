@@ -7,6 +7,7 @@ public class Main {
 	private static Scanner in = new Scanner(System.in);
 
 	private static Usuario usuario;
+	private static CuentaBancaria cuentaBancaria;
 
 	public static void main(String[] args) {
 
@@ -206,6 +207,57 @@ public class Main {
 	
 	public static void menuPrincipal() {
 		
+		String nombreCuentaBancaria;
+		
+		Utilidades.anadirEspacio();
+		
+		if (cuentaBancaria == null) {
+			System.out.println("     Antes de comenzar, necesitará crear una cuenta bancaria.");
+			System.out.println("");
+			System.out.print("       Nombre de la cuenta: ");
+			nombreCuentaBancaria = in.nextLine();
+			
+			cuentaBancaria = new CuentaBancaria(nombreCuentaBancaria, usuario, 5000.0, Utilidades.generarInteresInicial());
+			
+			System.out.println("");
+			System.out.println("     Cuenta generada con éxito.");
+			System.out.println("");
+			System.out.println("     Pulse Enter para continuar...");
+			in.nextLine();
+			
+		}
+		
+		Utilidades.anadirEspacio();
+		
+		System.out.println("            ======================");
+		System.out.println("               Página Principal");
+		System.out.println("            ======================");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("     Bienvenido " + usuario.getNombre() + " " + usuario.getApellido());
+		System.out.println("");
+		System.out.println("");
+		System.out.println("          Sus numeros");
+		System.out.println("     _________________________________________");
+		System.out.println("");
+		System.out.println("          Saldo en cuenta bancaria: " + cuentaBancaria.getSaldo() + " €");
+		System.out.println("");
+		System.out.println("          Saldo líquido: " + usuario.getLiquidez() + " €");
+		System.out.println("");
+		System.out.println("          Acciones en posesión: " + usuario.getAccionesEnPosesion());
+		System.out.println("");
+		System.out.println("          Beneficio: " + usuario.getBeneficio() + " €");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("          Números Macroeconómicos");
+		System.out.println("     _________________________________________");
+		System.out.println("");
+		System.out.println("          Inflación (% anual): " + cuentaBancaria.getInflacion() + "%");
+		System.out.println("");
+		System.out.println("          Intereses de su cuenta (% anual): " + cuentaBancaria.getInteresAnual());
+		System.out.println("");
+		System.out.println("");
+		System.out.println("        Nuevas acciones (N) | Mis acciones (M) | Mi Banco (B) | Tienda (T) | Cerrar Sesión (C)");
 	}
 
 }

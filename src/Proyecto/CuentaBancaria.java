@@ -4,7 +4,7 @@ public class CuentaBancaria {
 	
 	private String nombre;
 	private Usuario titular;
-	private double capital;
+	private double saldo;
 	private double interesAnual;
 	private double inflacion;
 	
@@ -20,11 +20,27 @@ public class CuentaBancaria {
 	// Esta parte va a requerir más tiempo, pero si la conseguimos implementar puede quedar
 	// muy bien.
 	
-	public CuentaBancaria(String nombre, Usuario titular, double capital, double interesAnual) {
+	// Para implementar la idea de comprar cosas podria hacerse una clase Tienda, en la que hayan
+	// determinados objetos que vayan subiendo o bajando de precio, dependiendo si es un periodo
+	// inflacionario o deflacionario.
+	
+	public CuentaBancaria(String nombre, Usuario titular, double saldo, double interesAnual) {
 		this.nombre = nombre;
 		this.titular = titular;
-		this.capital = capital;
+		this.saldo = saldo;
 		this.interesAnual = interesAnual;
+	}
+	
+	public double getSaldo() {
+		return saldo;
+	}
+	
+	public double getInflacion() {
+		return inflacion;
+	}
+	
+	public double getInteresAnual() {
+		return interesAnual;
 	}
 
 }
