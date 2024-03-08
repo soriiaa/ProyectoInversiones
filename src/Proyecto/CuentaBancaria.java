@@ -24,11 +24,15 @@ public class CuentaBancaria {
 	// determinados objetos que vayan subiendo o bajando de precio, dependiendo si es un periodo
 	// inflacionario o deflacionario.
 	
-	public CuentaBancaria(String nombre, Usuario titular, double saldo, double interesAnual) {
+	// Si no se puede comprar una acción, se puede pedir un préstamo al banco, que habrá que devolver 
+	// teniendo en cuenta los tipos de interés, y pagando a plazos.
+	
+	public CuentaBancaria(String nombre, Usuario titular, double saldo, double interesAnual, double inflacion) {
 		this.nombre = nombre;
 		this.titular = titular;
 		this.saldo = saldo;
 		this.interesAnual = interesAnual;
+		this.inflacion = inflacion;
 	}
 	
 	public double getSaldo() {
@@ -41,6 +45,22 @@ public class CuentaBancaria {
 	
 	public double getInteresAnual() {
 		return interesAnual;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public String getNombreTitular() {
+		return titular.getNombre();
+	}
+	
+	public void restarDinero(double gasto) {
+		this.saldo = this.saldo - gasto;
+	}
+	
+	public void sumarDinero(double ingreso) {
+		this.saldo = this.saldo + ingreso;
 	}
 
 }

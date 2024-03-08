@@ -194,9 +194,9 @@ public class Main {
 			}
 
 		} while ((!correo.equals(usuario.getCorreo())) || (!contrasena.equals(usuario.getContrasena())));
-		
+
 		Utilidades.anadirEspacio();
-		
+
 		System.out.println("     Inicio de sesión exitoso.");
 		System.out.println("");
 		System.out.println("     Pulse Enter para ir al menú...");
@@ -204,60 +204,219 @@ public class Main {
 		menuPrincipal();
 
 	}
-	
+
 	public static void menuPrincipal() {
-		
+
 		String nombreCuentaBancaria;
-		
+		String decision;
+
 		Utilidades.anadirEspacio();
-		
+
 		if (cuentaBancaria == null) {
 			System.out.println("     Antes de comenzar, necesitará crear una cuenta bancaria.");
 			System.out.println("");
 			System.out.print("       Nombre de la cuenta: ");
 			nombreCuentaBancaria = in.nextLine();
-			
-			cuentaBancaria = new CuentaBancaria(nombreCuentaBancaria, usuario, 5000.0, Utilidades.generarInteresInicial());
-			
+
+			cuentaBancaria = new CuentaBancaria(nombreCuentaBancaria, usuario, 5000.0, Utilidades.generarInteresInicial(), Utilidades.generarInflacionInicial());
+
 			System.out.println("");
 			System.out.println("     Cuenta generada con éxito.");
 			System.out.println("");
 			System.out.println("     Pulse Enter para continuar...");
 			in.nextLine();
-			
+
 		}
-		
-		Utilidades.anadirEspacio();
-		
-		System.out.println("            ======================");
-		System.out.println("               Página Principal");
-		System.out.println("            ======================");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("     Bienvenido " + usuario.getNombre() + " " + usuario.getApellido());
-		System.out.println("");
-		System.out.println("");
-		System.out.println("          Sus numeros");
-		System.out.println("     _________________________________________");
-		System.out.println("");
-		System.out.println("          Saldo en cuenta bancaria: " + cuentaBancaria.getSaldo() + " €");
-		System.out.println("");
-		System.out.println("          Saldo líquido: " + usuario.getLiquidez() + " €");
-		System.out.println("");
-		System.out.println("          Acciones en posesión: " + usuario.getAccionesEnPosesion());
-		System.out.println("");
-		System.out.println("          Beneficio: " + usuario.getBeneficio() + " €");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("          Números Macroeconómicos");
-		System.out.println("     _________________________________________");
-		System.out.println("");
-		System.out.println("          Inflación (% anual): " + cuentaBancaria.getInflacion() + "%");
-		System.out.println("");
-		System.out.println("          Intereses de su cuenta (% anual): " + cuentaBancaria.getInteresAnual());
-		System.out.println("");
-		System.out.println("");
-		System.out.println("        Nuevas acciones (N) | Mis acciones (M) | Mi Banco (B) | Tienda (T) | Cerrar Sesión (C)");
+
+		do {
+			
+			String cadenaTiposDeInteres = String.format("%.3f", cuentaBancaria.getInteresAnual());
+			String cadenaInflacion = String.format("%.3f", cuentaBancaria.getInflacion());
+
+			Utilidades.anadirEspacio();
+
+			System.out.println("            ======================");
+			System.out.println("               Página Principal");
+			System.out.println("            ======================");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("     Bienvenido " + usuario.getNombre() + " " + usuario.getApellido());
+			System.out.println("");
+			System.out.println("");
+			System.out.println("          Sus números");
+			System.out.println("     _________________________________________");
+			System.out.println("");
+			System.out.println("          Saldo en cuenta bancaria: " + cuentaBancaria.getSaldo() + " €");
+			System.out.println("");
+			System.out.println("          Saldo líquido: " + usuario.getLiquidez() + " €");
+			System.out.println("");
+			System.out.println("          Acciones en posesión: " + usuario.getAccionesEnPosesion());
+			System.out.println("");
+			System.out.println("          Beneficio: " + usuario.getBeneficio() + " €");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("          Números Macroeconómicos");
+			System.out.println("     _________________________________________");
+			System.out.println("");
+			System.out.println("          Inflación (% anual): " + cadenaInflacion + "%");
+			System.out.println("");
+			System.out.println("          Intereses de su cuenta (% anual): " + cadenaTiposDeInteres + "%");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("        Crear accion (N) | Invertir en accion (I) | Mis acciones (M) | Mi Banco (B) | Tienda (T) | Cerrar Sesión (C)");
+
+			decision = in.nextLine();
+
+			if ((!decision.equalsIgnoreCase("N")) && (!decision.equalsIgnoreCase("I")) && (!decision.equalsIgnoreCase("M")) && (!decision.equalsIgnoreCase("B")) && (!decision.equalsIgnoreCase("T")) && (!decision.equalsIgnoreCase("C"))) {
+				System.out.println("");
+				System.out.println("     Opción incorrecta (N/M/B/T/C)");
+				System.out.println("");
+				System.out.println("     Pulse Enter para continuar...");
+				in.nextLine();
+			}
+
+		} while ((!decision.equalsIgnoreCase("N")) && (!decision.equalsIgnoreCase("I"))	&& (!decision.equalsIgnoreCase("M")) && (!decision.equalsIgnoreCase("B")) && (!decision.equalsIgnoreCase("T")) && (!decision.equalsIgnoreCase("C")));
+
+		if (decision.equalsIgnoreCase("N")) {
+
+			String nombreAccion;
+
+			Utilidades.anadirEspacio();
+
+			System.out.println("     =========================");
+			System.out.println("        Creador de acciones");
+			System.out.println("     =========================");
+			System.out.println("");
+			System.out.print("     ¿Como se llama la nueva acción?: ");
+			nombreAccion = in.nextLine();
+
+			Acciones accion = new Acciones(nombreAccion);
+			usuario.anadirAccionExistente(accion);
+
+			System.out.println("");
+			System.out.println("        Acción creada con éxito.");
+			System.out.println("");
+			System.out.println("     Pulse Enter para volver al menú principal...");
+			in.nextLine();
+
+			menuPrincipal();
+
+		} else if (decision.equalsIgnoreCase("I")) {
+
+			String nombreAccionABuscar;
+			String deseaComprar;
+
+			Utilidades.anadirEspacio();
+
+			System.out.println("     =========================");
+			System.out.println("        Buscador de acciones");
+			System.out.println("     =========================");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("      Listado de acciones:");
+			System.out.println("");
+
+			usuario.mostrarNombreYPrecioAccionesExistentes();
+
+			System.out.println("");
+			System.out.print("     ¿Como se llama la acción en la que desea invertir?: ");
+			nombreAccionABuscar = in.nextLine();
+
+			Acciones accionBuscada = usuario.nombresAcciones(nombreAccionABuscar);
+
+			if (nombreAccionABuscar.equals(accionBuscada.getNombre())) {
+				System.out.println("");
+				System.out.println("         La acción ha sido encontrada con éxito.");
+				System.out.println("");
+				System.out.println("         Nombre: " + accionBuscada.getNombre() + ", precio: " + accionBuscada.getPrecio() + "€");
+
+				do {
+
+					System.out.println("");
+					System.out.print("     ¿Desea comprar acciones de este valor?: S/N: ");
+					deseaComprar = in.nextLine();
+
+					if ((!deseaComprar.equalsIgnoreCase("S")) && (!deseaComprar.equalsIgnoreCase("N"))) {
+						System.out.println("");
+						System.out.println("     Debe introducir una S o una N, pulse Enter para continuar...");
+						in.nextLine();
+					}
+
+				} while ((!deseaComprar.equalsIgnoreCase("S")) && (!deseaComprar.equalsIgnoreCase("N")));
+				
+				if (deseaComprar.equalsIgnoreCase("S")) {
+					
+					int numeroAcciones;
+					String confirmacionCompra;
+					
+					Utilidades.anadirEspacio();
+					
+					System.out.println("      Proceso de compra...");
+					System.out.println("     _______________________");
+					System.out.println("");
+					System.out.println("      Nombre: " + accionBuscada.getNombre() + ", precio: " + accionBuscada.getPrecio());
+					System.out.println("");
+					
+					do {
+						
+					System.out.print("         ¿Cuantas acciones desea comprar?: ");
+					numeroAcciones = in.nextInt();
+					in.nextLine();
+					
+						if (numeroAcciones < 1) {
+							System.out.println("");
+							System.out.println("         No puedes comprar menos de una acción.");
+							System.out.println("     Pulsa Enter para volver a introducir la cantidad...");
+							in.nextLine();
+						}
+					
+					} while (numeroAcciones < 1);
+					
+					double precioTotalDecimales = accionBuscada.getPrecioConDecimales() * numeroAcciones;
+					String precioTotal = String.format("%.3f", precioTotalDecimales);
+					
+					System.out.println("");
+					System.out.println("         Precio por acción: " + accionBuscada.getPrecio() + "€   Precio total: " + accionBuscada.getPrecio() + " x " + numeroAcciones + " = " + precioTotal + "€");
+					System.out.println("");
+					System.out.println("      Se realizará un pago de: " + precioTotal + "€ de la cuenta bancaria: " + cuentaBancaria.getNombre() + ", a nombre del titular: " + cuentaBancaria.getNombreTitular() + ", por un total de " + numeroAcciones + " acciones de " + accionBuscada.getNombre() + ".");
+					System.out.println("");
+					System.out.print("      Escriba 'CONFIRMO' para confirmar la compra: ");
+					confirmacionCompra = in.nextLine();
+					
+					if (confirmacionCompra.equals("CONFIRMO")) {
+						accionBuscada.setCantidad(numeroAcciones);
+						cuentaBancaria.restarDinero(precioTotalDecimales);
+						usuario.comprarAccion(accionBuscada);
+						
+						Utilidades.anadirEspacio();
+						
+						System.out.println("     Transferencia completada con éxito.");
+						System.out.println("");
+						System.out.println("     Compra completada con éxito.");
+					} else if (!confirmacionCompra.equals("CONFIRMO")) {
+						Utilidades.anadirEspacio();
+						System.out.println("     Confirmación erronea. Operación cancelada.");
+					}
+				}
+
+			}
+
+			System.out.println("");
+			System.out.println("     Pulse Enter para volver al menú principal...");
+			in.nextLine();
+
+			menuPrincipal();
+
+		} else if (decision.equalsIgnoreCase("M")) {
+
+		} else if (decision.equalsIgnoreCase("B")) {
+
+		} else if (decision.equalsIgnoreCase("T")) {
+
+		} else if (decision.equalsIgnoreCase("C")) {
+
+		}
+
 	}
 
 }
