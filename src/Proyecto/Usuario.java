@@ -11,6 +11,7 @@ public class Usuario {
 	private String correoElectronico;
 	private String contrasena;
 	private double beneficio;
+	private int dias;
 	private ArrayList<Acciones> listaPropiedadAcciones;
 	private ArrayList<Acciones> listaAccionesExistentes;
 
@@ -33,8 +34,7 @@ public class Usuario {
 
 		for (int i = 0; i < numeroAcciones; i++) {
 			accionProvisional = listaAccionesExistentes.get(i);
-			System.out.println("         ·Nombre: " + accionProvisional.getNombre() + ", Precio: "
-					+ accionProvisional.getPrecio() + "€.");
+			System.out.println("         ·Nombre: " + accionProvisional.getNombre() + ", Precio: " + accionProvisional.getPrecio() + "€.");
 		}
 	}
 
@@ -76,6 +76,20 @@ public class Usuario {
 
 		return listaAccionesTemp.toString();
 	}
+	
+	public void nombresAccionesMisAcciones() {
+
+		int numeroAcciones = listaPropiedadAcciones.size();
+		
+		for (int i = 0; i < numeroAcciones; i++) {
+			System.out.println("     ·Nombre: " + (listaPropiedadAcciones.get(i)).getNombre() + ", Precio: " + (listaPropiedadAcciones.get(i)).getPrecio());
+		}
+		
+	}
+	
+	public void pasarDia() {
+		this.dias = this.dias + 1;
+	}
 
 	public void comprarAccion(Acciones accion) {
 		listaPropiedadAcciones.add(accion);
@@ -107,6 +121,10 @@ public class Usuario {
 
 	public double getBeneficio() {
 		return beneficio;
+	}
+	
+	public ArrayList<Acciones> getListadoAcciones() {
+		return listaAccionesExistentes;
 	}
 
 }
