@@ -10,17 +10,23 @@ public class Utilidades extends Main{
 		}
 	}
 	
+	// Genero la inflación inicial con un 5% máximo
+	
 	public static double generarInflacionInicial() {
 		Random random = new Random();
 		double numeroAleatorio = random.nextDouble() * 5.0;
 		return numeroAleatorio;
 	}
 	
+	// Genero el interés inicial con un 5% máximo
+	
 	public static double generarInteresInicial() {
 		Random random = new Random();
 		double numeroAleatorio = random.nextDouble() * 5.0;
 		return numeroAleatorio;
 	}
+	
+	// Genero el precio aleatorio inicial de la acción
 	
 	public static double generarPrecioAleatorio() {
 		Random random = new Random();
@@ -36,10 +42,14 @@ public class Utilidades extends Main{
 		
 		Random random = new Random();
 		
-		double valorAnteriorAux = valorAnterior * 0.02;
-		double cambio = (2 * random.nextDouble() - 1) * valorAnteriorAux;
-		double nuevoValor = valorAnterior + cambio;
+		double nuevoValor;
+		double aleatorio = random.nextDouble();
 		
+		if (aleatorio > 0.5) {
+			nuevoValor = random.nextDouble() * 2;
+		} else {
+			nuevoValor = random.nextDouble() * (-2);
+		}
 		return nuevoValor;
 	}
 	

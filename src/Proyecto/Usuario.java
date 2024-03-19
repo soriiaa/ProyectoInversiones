@@ -26,6 +26,8 @@ public class Usuario {
 		this.listaPropiedadAcciones = new ArrayList<>();
 		this.listaAccionesExistentes = new ArrayList<>();
 	}
+	
+	// Imprime el el nombre y el precio de las acciones que existen y están guardadas en la lista de acciones existentes.
 
 	public void mostrarNombreYPrecioAccionesExistentes() {
 
@@ -37,6 +39,8 @@ public class Usuario {
 			System.out.println("         ·Nombre: " + accionProvisional.getNombre() + ", Precio: " + accionProvisional.getPrecio() + "€.");
 		}
 	}
+	
+	// Retorna el objeto que tenga el nombre introducido por parámetro que se encuentre en la lista de acciones existentes.
 
 	public Acciones nombresAcciones(String nombreBuscado) {
 
@@ -59,6 +63,32 @@ public class Usuario {
 
 		return null;
 	}
+	
+	// Retorna el objeto que tenga el nombre buscado por parámetro de la lista de acciones en propiedad.
+	
+	public Acciones objetoAccionBuscadaEnPropiedad(String nombreBuscado) {
+
+		int numeroAcciones = listaPropiedadAcciones.size();
+		Acciones accionProvisional;
+		ArrayList<String> listaNombresProvisional = new ArrayList<>();
+
+		for (int i = 0; i < numeroAcciones; i++) {
+			accionProvisional = listaPropiedadAcciones.get(i);
+			listaNombresProvisional.add(accionProvisional.getNombre());
+		}
+
+		if (listaNombresProvisional.contains(nombreBuscado)) {
+			for (int i = 0; i < numeroAcciones; i++) {
+				if (listaPropiedadAcciones.get(i).getNombre().equals(nombreBuscado)) {
+					return listaPropiedadAcciones.get(i);
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	// Retorna la lista de objetos de las acciones en propiedad.
 
 	public String getAccionesEnPosesion() {
 
@@ -76,6 +106,8 @@ public class Usuario {
 
 		return listaAccionesTemp.toString();
 	}
+	
+	// Imprimo los nombres de las acciones que pertenecen al usuario.
 	
 	public void nombresAccionesMisAcciones() {
 

@@ -442,6 +442,7 @@ public class Main {
 		} else if (decision.equalsIgnoreCase("M")) {
 			
 			String nombreAccionBuscada;
+			Acciones accionBuscada;
 			
 			Utilidades.anadirEspacio();
 			
@@ -450,11 +451,17 @@ public class Main {
 			System.out.println("        ================");
 			System.out.println("");
 			System.out.println("");
+			System.out.print("    ");
 			usuario.nombresAccionesMisAcciones();
 			
+			System.out.println("");
 			System.out.print("     Escriba el nombre de la acción que quiere analizar: ");
 			
 			nombreAccionBuscada = in.nextLine();
+			
+			accionBuscada = usuario.objetoAccionBuscadaEnPropiedad(nombreAccionBuscada);
+			
+			// Generar gráfico de la acción buscada.
 			
 			Utilidades.anadirEspacio();
 			
@@ -475,7 +482,7 @@ public class Main {
 			
 			for (int i = 0; i < usuario.getListadoAcciones().size(); i++) {
 				usuario.getListadoAcciones().get(i).generarNuevoPrecio();
-				usuario.getListadoAcciones().get(i).mostrarHistorialPrecios();
+				// usuario.getListadoAcciones().get(i).mostrarHistorialPrecios(); Muestra el historial de precios de todas las acciones
 			}
 			
 			menuPrincipal();
