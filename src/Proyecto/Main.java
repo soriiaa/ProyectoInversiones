@@ -400,9 +400,11 @@ public class Main {
 						confirmacionCompra = in.nextLine();
 						
 						if (cuentaBancaria.getSaldo() - precioTotalDecimales < 0) {
-							System.out.println("Saldo insuficiente en cuenta.");
 							System.out.println("");
-							System.out.println("Pulse Enter para volver al menú...");
+							System.out.println("");
+							System.out.println("        Saldo insuficiente en cuenta.");
+							System.out.println("");
+							System.out.println("     Pulse Enter para continuar...");
 							in.nextLine();
 							
 						} else {
@@ -459,9 +461,32 @@ public class Main {
 			
 			nombreAccionBuscada = in.nextLine();
 			
+			/*
+			 * 
+			 *  ARREGLAR: SI PONES UNA ACCIÓN QUE NO ESTA REGISTRADA:
+			 *  
+			 *  	Exception in thread "main" java.lang.NullPointerException: Cannot invoke "Proyecto.Acciones.generarGraficoPreciosAccion()" because "accionBuscada" is null
+			 * 
+			 * 
+			 */
+			
 			accionBuscada = usuario.objetoAccionBuscadaEnPropiedad(nombreAccionBuscada);
 			
 			// Generar gráfico de la acción buscada.
+			
+			System.out.println("");
+			System.out.println("");
+			
+			accionBuscada.generarGraficoPreciosAccion();
+			
+			System.out.println("");
+			
+			for (int i = 0; i < usuario.getListadoAcciones().size(); i++) {
+				usuario.getListadoAcciones().get(i).mostrarHistorialPrecios();
+			}
+			
+			System.out.println("      Pulse Enter para volver al menú...");
+			in.nextLine();
 			
 			Utilidades.anadirEspacio();
 			
@@ -478,11 +503,9 @@ public class Main {
 			
 			Utilidades.pasarDia();
 			
-			// ARREGLAR ESTO
-			
 			for (int i = 0; i < usuario.getListadoAcciones().size(); i++) {
-				usuario.getListadoAcciones().get(i).generarNuevoPrecio();
-				// usuario.getListadoAcciones().get(i).mostrarHistorialPrecios(); Muestra el historial de precios de todas las acciones
+				usuario.getListadoAcciones().get(i).generarNuevoPrecio();			// Genera un nuevo precio aleatorio.
+				// usuario.getListadoAcciones().get(i).mostrarHistorialPrecios(); 	Muestra el historial de precios de todas las acciones
 			}
 			
 			menuPrincipal();
