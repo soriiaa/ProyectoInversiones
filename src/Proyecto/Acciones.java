@@ -116,6 +116,9 @@ public class Acciones {
 			
 		}
 		
+		
+		// Hay que ordenar los precios que sean iguales por día de menor a mayor
+		
 		for (int i = 0; i < arrayPreciosMayorMenorYDia.length; i++) {
 			for (int j = 0; j < 2; j++) {
 				System.out.print(arrayPreciosMayorMenorYDia[i][j]);
@@ -134,21 +137,24 @@ public class Acciones {
 					System.out.print(" ");
 				}
 				
-				if (i < arrayPreciosMayorMenorYDia[arrayPreciosMayorMenorYDia.length - 1][1]) {
+				if (i > arrayPreciosMayorMenorYDia[arrayPreciosMayorMenorYDia.length - 1][1]) {
 					if (arrayPreciosMayorMenorYDia[contador2][0] == arrayPreciosMayorMenorYDia[contador2 + 1][0]) {
 						System.out.print("*");
+						contador2++;
 					} else {
 						System.out.println("*");
+						contador2++;
 					}
 				} else {
 					System.out.println("*");
+					contador2++;
 				}
 				
 			} else {
 				System.out.println("");
 			}
 			
-			contador2++;
+			
 			
 		}
 		

@@ -74,10 +74,34 @@ public class Main {
 			System.out.print("     Introduzca su apellido: ");
 			apellido = in.nextLine();
 
-			System.out.println("");
-			System.out.print("     Introduzca su edad: ");
-			edad = in.nextInt();
-			in.nextLine();
+			boolean errorEdad;
+			String edadProvisional;
+			
+			do {
+				
+				System.out.println("");
+				System.out.print("     Introduzca su edad: ");
+				edadProvisional = in.nextLine();
+				errorEdad = false;
+				
+				for (int i = 0; i < edadProvisional.length(); i++) {
+					if ((!Character.isDigit(edadProvisional.charAt(i))) || (edadProvisional.length() > 3)) {
+						errorEdad = true;
+					}
+				}
+				
+				if (errorEdad) {
+					System.out.println("");
+					System.out.println("      Su edad debe ser numérica y real.");
+					System.out.println("");
+					System.out.println("    Pulse Enter para volver a introducirla...");
+					in.nextLine();
+					Utilidades.anadirEspacio();
+				}
+				
+			} while (errorEdad);
+			
+			edad = Integer.parseInt(edadProvisional);
 
 			System.out.println("");
 			System.out.print("     Introduzca su correo electrónico, con él iniciará sesión: ");
@@ -461,29 +485,32 @@ public class Main {
 			
 			nombreAccionBuscada = in.nextLine();
 			
-			/*
-			 * 
-			 *  ARREGLAR: SI PONES UNA ACCIÓN QUE NO ESTA REGISTRADA:
-			 *  
-			 *  	Exception in thread "main" java.lang.NullPointerException: Cannot invoke "Proyecto.Acciones.generarGraficoPreciosAccion()" because "accionBuscada" is null
-			 * 
-			 * 
-			 */
-			
-			accionBuscada = usuario.objetoAccionBuscadaEnPropiedad(nombreAccionBuscada);
-			
-			// Generar gráfico de la acción buscada.
-			
-			System.out.println("");
-			System.out.println("");
-			
-			accionBuscada.generarGraficoPreciosAccion();
-			
-			System.out.println("");
-			
-			for (int i = 0; i < usuario.getListadoAcciones().size(); i++) {
-				usuario.getListadoAcciones().get(i).mostrarHistorialPrecios();
+			try {
+				
+				accionBuscada = usuario.objetoAccionBuscadaEnPropiedad(nombreAccionBuscada);
+				
+				// Generar gráfico de la acción buscada.
+				
+				System.out.println("");
+				System.out.println("");
+				
+				accionBuscada.generarGraficoPreciosAccion();
+				
+				System.out.println("");
+				
+				for (int i = 0; i < usuario.getListadoAcciones().size(); i++) {
+					usuario.getListadoAcciones().get(i).mostrarHistorialPrecios();
+				}
+				
+			} catch (NullPointerException e) {
+				
+				System.out.println("");
+				System.out.println("     La acción buscada no existe.");
+				System.out.println("");
+				
 			}
+			
+			
 			
 			System.out.println("      Pulse Enter para volver al menú...");
 			in.nextLine();
