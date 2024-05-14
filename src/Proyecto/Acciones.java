@@ -1,6 +1,7 @@
 package Proyecto;
 
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 public class Acciones {
 	
@@ -118,6 +119,60 @@ public class Acciones {
 		
 		
 		// Hay que ordenar los precios que sean iguales por día de menor a mayor
+		
+		
+		
+		
+		
+		
+		
+		
+		// Idea de ordenación de precios ----
+		
+		int[][] arrayPreciosMayorMenorYDia2 = new int[arrayPreciosMayorMenorYDia.length][2];
+		
+		for (int i = 0; i < arrayPreciosMayorMenorYDia.length; i++) {
+			for (int j = 0; j < 2; j++) {
+				arrayPreciosMayorMenorYDia2[i][j] = arrayPreciosMayorMenorYDia[i][j];
+			}
+		}
+		
+		int longitudArray = arrayPreciosMayorMenorYDia2.length;
+		int contadorRepetidos = 0;
+		boolean seRepite = true;
+		
+		for (int i = 0; i < longitudArray; i++) {
+			
+			if ((i + 1 < longitudArray) && (seRepite)) {
+				if (arrayPreciosMayorMenorYDia2[i][1] == arrayPreciosMayorMenorYDia2[i + 1][1]) {
+					contadorRepetidos++;
+				} else {
+					seRepite = false;
+				}
+			}
+			
+		}
+		
+		
+		
+		
+		/*
+		
+		int precioMayorAux;
+		precioMayorAux = arrayPreciosMayorMenorYDia2[0][1];
+		TreeSet<Integer> diaPrecioOrdenado = new TreeSet<>();
+		
+		for (int i = 0; i < arrayPreciosMayorMenorYDia2.length; i++) {
+			if (arrayPreciosMayorMenorYDia2[i][1] == precioMayorAux) {
+				diaPrecioOrdenado.add(arrayPreciosMayorMenorYDia2[i][1]);
+			}
+		}
+		
+		*/
+		
+		// Idea de ordenación de precios ----
+		
+		
 		
 		for (int i = 0; i < arrayPreciosMayorMenorYDia.length; i++) {
 			for (int j = 0; j < 2; j++) {
