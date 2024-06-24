@@ -35,57 +35,51 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 		this.miControlador = miControlador;
 	}
 
-	public _00_InicioAplicacion() {
-		
-		
-		setTitle("Investing Simulator");
-		
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(135, 206, 250));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setLocationRelativeTo(null);
+	public _00_InicioAplicacion() {        
+        frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(0, 0, 0));
+        frame.setBounds(100, 100, 679, 467);
+        frame.setUndecorated(true);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setContentPane(contentPane);
-		
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(0, 0, 0));
-		frame.setBounds(100, 100, 679, 467);
-		frame.setUndecorated(true);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icono = new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png"));
+        frame.setIconImage(icono.getImage());
+        
+        contentPane = new JPanel();
+        contentPane.setBackground(new Color(0, 0, 0));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(null);  // Cambié esto para que el contentPane tenga un layout nulo
+        frame.setContentPane(contentPane);
+        
+        lblImagen = new JLabel("");
+        lblImagen.setBounds(397, 99, 226, 211);
+        ImageIcon icon = new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png"));
+        Image image = icon.getImage();
+        Image scaledImage = image.getScaledInstance(226, 211, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(scaledImage);
+        lblImagen.setIcon(icon);
+        contentPane.add(lblImagen);
 
-		ImageIcon icono = new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png"));
-		frame.setIconImage(icono.getImage());
+        lblTitulo = new JLabel("Investing");
+        lblTitulo.setBounds(50, 89, 297, 85);
+        lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 70));
+        lblTitulo.setForeground(new Color(255, 255, 255));
+        contentPane.add(lblTitulo);
 
-		lblImagen = new JLabel("");
-		lblImagen.setBounds(397, 99, 226, 211);
-		ImageIcon icon = new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png"));
-		Image image = icon.getImage();
-		Image scaledImage = image.getScaledInstance(566, 410, Image.SCALE_SMOOTH);
-		icon = new ImageIcon(scaledImage);
-		frame.getContentPane().setLayout(null);
-		lblImagen.setIcon(new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png")));
-		frame.getContentPane().add(lblImagen);
+        lblTitulo2 = new JLabel("Simulator");
+        lblTitulo2.setBounds(50, 168, 193, 57);
+        lblTitulo2.setFont(new Font("Tahoma", Font.PLAIN, 42));
+        lblTitulo2.setForeground(Color.WHITE);
+        contentPane.add(lblTitulo2);
 
-		lblTitulo = new JLabel("Investing");
-		lblTitulo.setBounds(50, 89, 297, 85);
-		lblTitulo.setFont(new Font("Tahoma", Font.PLAIN, 70));
-		lblTitulo.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(lblTitulo);
-
-		lblTitulo2 = new JLabel("Simulator");
-		lblTitulo2.setBounds(50, 168, 193, 57);
-		lblTitulo2.setFont(new Font("Tahoma", Font.PLAIN, 42));
-		lblTitulo2.setForeground(Color.WHITE);
-		frame.getContentPane().add(lblTitulo2);
-
-		lblVersion = new JLabel("V 1.0");
-		lblVersion.setBounds(22, 423, 44, 34);
-		frame.getContentPane().add(lblVersion);
-		lblVersion.setForeground(new Color(255, 255, 255));
-		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		
-		setVisible(true);
-	}
+        lblVersion = new JLabel("V 1.0");
+        lblVersion.setBounds(22, 423, 44, 34);
+        lblVersion.setForeground(new Color(255, 255, 255));
+        lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 19));
+        contentPane.add(lblVersion);
+        
+        frame.setVisible(true);
+    }
 
 }

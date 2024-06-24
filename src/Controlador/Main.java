@@ -24,10 +24,6 @@ public class Main {
 			vista.setControlador(miControlador);
 		}
 
-		_00_InicioAplicacion frame = (_00_InicioAplicacion) misVistas[0];
-
-		frame.setVisible(true);
-
 	}
 
 }
