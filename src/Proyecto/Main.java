@@ -8,6 +8,8 @@ public class Main {
 
 	static Usuario usuario;
 	static CuentaBancaria cuentaBancaria;
+	
+	/*
 
 	public static void main(String[] args) {
 
@@ -540,5 +542,7 @@ public class Main {
 		}
 
 	}
+	
+	*/
 
 }
