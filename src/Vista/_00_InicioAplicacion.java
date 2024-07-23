@@ -34,23 +34,28 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
 	public void setControlador(Controlador miControlador) {
 		this.miControlador = miControlador;
 	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 
-	public _00_InicioAplicacion() {        
-        frame = new JFrame();
-        frame.getContentPane().setBackground(new Color(0, 0, 0));
-        frame.setBounds(100, 100, 679, 467);
-        frame.setUndecorated(true);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public _00_InicioAplicacion() {            
+        
+        setTitle("Investing Simulator 1.0");
+		setResizable(false);
+		setBounds(100, 100, 680, 480);
+		setUndecorated(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ImageIcon icono = new ImageIcon(_00_InicioAplicacion.class.getResource("/Assets/logo2.png"));
-        frame.setIconImage(icono.getImage());
+        setIconImage(icono.getImage());
         
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 0));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(null);  // Cambié esto para que el contentPane tenga un layout nulo
-        frame.setContentPane(contentPane);
+        setContentPane(contentPane);
         
         lblImagen = new JLabel("");
         lblImagen.setBounds(397, 99, 226, 211);
@@ -79,7 +84,10 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
         lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 19));
         contentPane.add(lblVersion);
         
-        frame.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.setBounds(91, 436, 589, 10);
+        contentPane.add(panel);
+        
+        setVisible(true);
     }
-
 }

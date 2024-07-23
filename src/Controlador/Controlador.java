@@ -1,5 +1,7 @@
 package Controlador;
 
+import javax.swing.JFrame;
+
 import Modelo.Modelo;
 import Vista.Vista;
 
@@ -18,6 +20,12 @@ public class Controlador {
 	
 	public void setModelo(Modelo miModelo) {
 		this.miModelo = miModelo;
+	}
+	
+	public void cambiarVentana(int desde, int hasta) {
+		((JFrame) misVistas[desde]).setVisible(false);
+		((JFrame) misVistas[hasta]).setVisible(true);
+		
 	}
 
 }
