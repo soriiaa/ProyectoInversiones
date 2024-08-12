@@ -85,7 +85,7 @@ public class _00_InicioAplicacion extends JFrame implements Vista {
         contentPane.add(lblVersion);
         
         JPanel panel = new JPanel();
-        panel.setBounds(91, 436, 589, 10);
+        panel.setBounds(91, 436, 550, 10);
         contentPane.add(panel);
         
         setVisible(true);
